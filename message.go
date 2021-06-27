@@ -24,6 +24,10 @@ func Failure(code int, err error) *writer {
 	return newWriter(code, StatusFAILURE, http.StatusText(code), err, nil)
 }
 
+func New(code int, status, message string, err error, data interface{}) *writer {
+	return newWriter(code, status, message, err, data)
+}
+
 func newWriter(code int, status, message string, err error, data interface{}) *writer {
 	if err != nil {
 		pc, fn, line, _ := runtime.Caller(2)
